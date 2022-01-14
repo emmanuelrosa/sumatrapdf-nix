@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "erosanix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1642105236,
+        "narHash": "sha256-pekXDSoXN2bBSHHLm7MNqncn6Y46Bpc6Zq/A/aCbqd0=",
+        "owner": "emmanuelrosa",
+        "repo": "erosanix",
+        "rev": "2efc8a4571a970f170a28c7d853038de0f3c80d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emmanuelrosa",
+        "repo": "erosanix",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1641936468,
+        "narHash": "sha256-WQpds9f1GByIL0WLnjyPK4Dopjdq0h9RwqxdKt2sGSU=",
+        "path": "/nix/store/qmxv7qw9cs1g7cpjf4cmyyfqjmgmgz55-source",
+        "rev": "b0b40f863b4122705ac1f0fc25c2639728669cf9",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "root": {
+      "inputs": {
+        "erosanix": "erosanix",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
