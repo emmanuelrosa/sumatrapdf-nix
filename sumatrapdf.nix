@@ -7,8 +7,11 @@
 , makeDesktopIcon   # This comes with erosanix. It's a handy way to generate desktop icons.
 , copyDesktopItems
 , copyDesktopIcons  # This comes with erosanix. It's a handy way to generate desktop icons.
-, unzip }:
-mkWindowsApp rec {
+, unzip }: let
+  # The default settings used if user doesn't already have a settings file.
+  # Tabs are disabled because they lead to UI issues when using Wine.
+  defaultSettings = ./SumatraPDF-settings.txt;
+in mkWindowsApp rec {
   inherit wine;
 
   pname = "sumatrapdf";
@@ -55,7 +58,8 @@ mkWindowsApp rec {
     cache_dir="$HOME/.cache/sumatrapdf"
 
     mkdir -p "$config_dir" "$cache_dir"
-    touch "$config_dir/SumatraPDF-settings.txt"
+    cp -n "${defaultSettings}" "$config_dir/SumatraPDF-settings.txt"
+    chmod ug+w "$config_dir/SumatraPDF-settings.txt"
     ln -s "$config_dir/SumatraPDF-settings.txt" "$WINEPREFIX/drive_c/${pname}/SumatraPDF-settings.txt"
     ln -s "$cache_dir" "$WINEPREFIX/drive_c/${pname}/${pname}cache"
 
