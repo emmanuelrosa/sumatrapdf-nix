@@ -42,6 +42,13 @@ in mkWindowsApp rec {
   # for demonstration purposes.
   enableInstallNotification = true;
 
+  # `fileMap` can be used to set up automatic symlinks to files which need to be persisted.
+  # The attribute name is the source path and the value is the path within the $WINEPREFIX.
+  # But note that you must ommit $WINEPREFIX from the path.
+  fileMap = { "$HOME/.config/${pname}/SumatraPDF-settings.txt" = "drive_c/${pname}/SumatraPDF-settings.txt";
+              "$HOME/.cache/${pname}" = "drive_c/${pname}/${pname}cache";
+  };
+
   nativeBuildInputs = [ unzip copyDesktopItems copyDesktopIcons ];
 
   # This code will become part of the launcher script.
@@ -53,8 +60,14 @@ in mkWindowsApp rec {
   # and wine, winetricks, and cabextract are in the environment.
   winAppInstall = ''
     d="$WINEPREFIX/drive_c/${pname}"
+    config_dir="$HOME/.config/sumatrapdf"
+
     mkdir -p "$d"
     unzip ${src} -d "$d"
+
+    mkdir -p "$config_dir"
+    cp -v -n "${defaultSettings}" "$config_dir/SumatraPDF-settings.txt"
+    chmod ug+w "$config_dir/SumatraPDF-settings.txt"
   '';
 
   # This code will become part of the launcher script.
@@ -66,15 +79,6 @@ in mkWindowsApp rec {
   # You need to set up symlinks for any files/directories that need to be persisted.
   # To figure out what needs to be persisted, take at look at $(dirname $WINEPREFIX)/upper
   winAppRun = ''
-    config_dir="$HOME/.config/sumatrapdf"
-    cache_dir="$HOME/.cache/sumatrapdf"
-
-    mkdir -p "$config_dir" "$cache_dir"
-    cp -n "${defaultSettings}" "$config_dir/SumatraPDF-settings.txt"
-    chmod ug+w "$config_dir/SumatraPDF-settings.txt"
-    ln -s "$config_dir/SumatraPDF-settings.txt" "$WINEPREFIX/drive_c/${pname}/SumatraPDF-settings.txt"
-    ln -s "$cache_dir" "$WINEPREFIX/drive_c/${pname}/${pname}cache"
-
     wine "$WINEPREFIX/drive_c/${pname}/SumatraPDF-${version}-64.exe" "$ARGS"
   '';
 
