@@ -30,6 +30,18 @@ in mkWindowsApp rec {
   # Note that the wine package you choose must be compatible with the Wine architecture.
   wineArch = "win64";
 
+  # Sometimes it can take a while to install an application to generate an app layer.
+  # `enableInstallNotification`, which is set to true by default, uses notify-send
+  # to generate a system notification so that the user is aware that something is happening.
+  # There are two notifications: one before the app installation and one after.
+  # The notification will attempt to use the app's icon, if it can find it. And will fallback
+  # to hard-coded icons if needed.
+  # If an app installs quickly, these notifications can actually be distracting.
+  # In such a case, it's better to set this option to false.
+  # This package doesn't benefit from the notifications, but I've explicitly enabled them
+  # for demonstration purposes.
+  enableInstallNotification = true;
+
   nativeBuildInputs = [ unzip copyDesktopItems copyDesktopIcons ];
 
   # This code will become part of the launcher script.

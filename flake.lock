@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1642105236,
-        "narHash": "sha256-pekXDSoXN2bBSHHLm7MNqncn6Y46Bpc6Zq/A/aCbqd0=",
+        "lastModified": 1642807160,
+        "narHash": "sha256-KJgysVhSpGmXfUzb/JUtMp6YohlZgTkkcbrrKTpptlA=",
         "owner": "emmanuelrosa",
         "repo": "erosanix",
-        "rev": "2efc8a4571a970f170a28c7d853038de0f3c80d0",
+        "rev": "52247c2c224567a7d4683cb271fb0fedda6a612d",
         "type": "github"
       },
       "original": {
@@ -22,10 +22,10 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1641936468,
-        "narHash": "sha256-WQpds9f1GByIL0WLnjyPK4Dopjdq0h9RwqxdKt2sGSU=",
-        "path": "/nix/store/qmxv7qw9cs1g7cpjf4cmyyfqjmgmgz55-source",
-        "rev": "b0b40f863b4122705ac1f0fc25c2639728669cf9",
+        "lastModified": 1642770210,
+        "narHash": "sha256-2kMgAMy3ThQP5UvHkV/z2zMkoml9bQhatEzCpLq5Iwc=",
+        "path": "/nix/store/cwihclkh4g6wghh67nq9lyswfjh650im-source",
+        "rev": "0bef0d60524fcdb2b609625e34d5c224e150c17a",
         "type": "path"
       },
       "original": {
