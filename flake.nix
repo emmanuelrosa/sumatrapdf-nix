@@ -2,7 +2,7 @@
   description = "A Nix flake for SumatraPDF";
 
   inputs.erosanix.url = "github:emmanuelrosa/erosanix";
-  inputs.erosanix.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/master";
 
   outputs = { self, nixpkgs, erosanix }: {
 
