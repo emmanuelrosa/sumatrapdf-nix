@@ -100,7 +100,7 @@ in mkWindowsApp rec {
   '';
 
   desktopItems = let
-    mimeType = builtins.concatStringsSep ";" [ "application/pdf"
+    mimeTypes = ["application/pdf"
                  "application/epub+zip"
                  "application/x-mobipocket-ebook"
                  "application/vnd.amazon.mobi8-ebook"
@@ -126,14 +126,14 @@ in mkWindowsApp rec {
                  "image/x-dib" ];
   in [
     (makeDesktopItem {
-      inherit mimeType;
+      inherit mimeTypes;
 
       name = pname;
       exec = pname;
       icon = pname;
       desktopName = "Sumatra PDF";
       genericName = "Document Viewer";
-      categories = "Office;Viewer;";
+      categories = ["Office" "Viewer"];
     })
   ];
 
