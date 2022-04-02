@@ -23,7 +23,7 @@ in mkWindowsApp rec {
   version = "3.3.3";
 
   src = fetchurl {
-    url = "https://kjkpubsf.sfo2.digitaloceanspaces.com/software/sumatrapdf/rel/SumatraPDF-${version}-64.zip";
+    url = "https://www.sumatrapdfreader.org/dl/rel/SumatraPDF-3.3.3-64.zip";
     sha256 = "1b9l2hjngllzb478gvhp3dzn8hpxp9yj3q1wnq59d9356bi33md4";
   };
 
