@@ -19,7 +19,6 @@
       };
     };
 
-    defaultPackage.x86_64-linux = self.packages.x86_64-linux.sumatrapdf;
-
+    apps.x86_64-linux.default = self.packages.x86_64-linux.sumatrapdf;
   };
 }
