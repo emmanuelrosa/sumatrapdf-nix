@@ -19,6 +19,11 @@
       };
     };
 
-    apps.x86_64-linux.default = self.packages.x86_64-linux.sumatrapdf;
+    apps.x86_64-linux.sumatrapdf = {
+      type = "app";
+      program = "${self.packages.x86_64-linux.sumatrapdf}/bin/sumatrapdf";
+    };
+
+    apps.x86_64-linux.default = self.apps.x86_64-linux.sumatrapdf;
   };
 }
