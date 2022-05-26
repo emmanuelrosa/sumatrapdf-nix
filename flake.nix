@@ -12,6 +12,8 @@
       };
 
     in with (pkgs // erosanix.packages.x86_64-linux // erosanix.lib.x86_64-linux); {
+      default = self.packages.x86_64-linux.sumatrapdf;
+
       sumatrapdf = callPackage ./sumatrapdf.nix {
         inherit mkWindowsApp makeDesktopIcon copyDesktopIcons;
 
