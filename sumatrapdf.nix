@@ -20,11 +20,11 @@ in mkWindowsApp rec {
   inherit wine;
 
   pname = "sumatrapdf";
-  version = "3.4.2";
+  version = "3.4.6";
 
   src = fetchurl {
     url = "https://www.sumatrapdfreader.org/dl/rel/SumatraPDF-${version}-64.zip";
-    sha256 = "0yazsrr9ggc5lq1yl3gipjbj7wmxpwagv7jhf6xbshqajiv25hxw";
+    sha256 = "03fl6vacz5vz19ypdv5f3rdvs8msqip6yava3yy4iisbnyl5mc1b";
   };
 
   # In most cases, you'll either be using an .exe or .zip as the src.
