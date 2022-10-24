@@ -23,7 +23,7 @@ in mkWindowsApp rec {
   version = "3.4.6";
 
   src = fetchurl {
-    url = "https://www.sumatrapdfreader.org/dl/rel/SumatraPDF-${version}-64.zip";
+    url = "https://www.sumatrapdfreader.org/dl/rel/${version}/SumatraPDF-${version}-64.zip";
     sha256 = "03fl6vacz5vz19ypdv5f3rdvs8msqip6yava3yy4iisbnyl5mc1b";
   };
 
@@ -50,6 +50,8 @@ in mkWindowsApp rec {
   # `fileMap` can be used to set up automatic symlinks to files which need to be persisted.
   # The attribute name is the source path and the value is the path within the $WINEPREFIX.
   # But note that you must ommit $WINEPREFIX from the path.
+  # To figure out what needs to be persisted, take at look at $(dirname $WINEPREFIX)/upper,
+  # while the app is running.
   fileMap = { "$HOME/.config/${pname}/SumatraPDF-settings.txt" = "drive_c/${pname}/SumatraPDF-settings.txt";
               "$HOME/.cache/${pname}" = "drive_c/${pname}/${pname}cache";
   };
@@ -75,18 +77,30 @@ in mkWindowsApp rec {
     chmod ug+w "$config_dir/SumatraPDF-settings.txt"
   '';
 
+
+  # This code runs before winAppRun, but only for the first instance.
+  # Therefore, if the app is already running, winAppRun will not execute.
+  # Use this to do any setup prior to running the app.
+  winAppPreRun = ''
+    regedit ${txtReg}
+  '';
+
   # This code will become part of the launcher script.
-  # It will execute after winAppInstall (if needed)
+  # It will execute after winAppInstall and winAppPreRun (if needed),
   # to run the application.
   # WINEPREFIX, WINEARCH, AND WINEDLLOVERRIDES are set
   # and wine, winetricks, and cabextract are in the environment.
   # Command line arguments are in $ARGS, not $@
-  # You need to set up symlinks for any files/directories that need to be persisted.
-  # To figure out what needs to be persisted, take at look at $(dirname $WINEPREFIX)/upper
+  # DO NOT BLOCK. For example, don't run: wineserver -w
   winAppRun = ''
-    regedit ${txtReg}
     wine "$WINEPREFIX/drive_c/${pname}/SumatraPDF-${version}-64.exe" "$ARGS"
   '';
+
+  # This code will run after winAppRun, but only for the first instance.
+  # Therefore, if the app was already running, winAppPostRun will not execute.
+  # In other words, winAppPostRun is only executed if winAppPreRun is executed.
+  # Use this to do any cleanup after the app has terminated
+  winAppPostRun = "";
 
   # This is a normal mkDerivation installPhase, with some caveats.
   # The launcher script will be installed at $out/bin/.launcher
