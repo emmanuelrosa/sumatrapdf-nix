@@ -75,6 +75,7 @@ in mkWindowsApp rec {
     mkdir -p "$config_dir"
     cp -v -n "${defaultSettings}" "$config_dir/SumatraPDF-settings.txt"
     chmod ug+w "$config_dir/SumatraPDF-settings.txt"
+    regedit ${txtReg}
   '';
 
 
@@ -82,7 +83,6 @@ in mkWindowsApp rec {
   # Therefore, if the app is already running, winAppRun will not execute.
   # Use this to do any setup prior to running the app.
   winAppPreRun = ''
-    regedit ${txtReg}
   '';
 
   # This code will become part of the launcher script.
