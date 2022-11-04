@@ -56,6 +56,13 @@ in mkWindowsApp rec {
               "$HOME/.cache/${pname}" = "drive_c/${pname}/${pname}cache";
   };
 
+  # By default mkWindowsApp creates ephemeral (temporary) WINEPREFIX(es). 
+  # Setting persistRuntimeLayer to true causes mkWindowsApp to retain the WINEPREFIX, for the short term. 
+  # This option is designed for apps which can't have their automatic updates disabled.
+  # It allows package maintainers to not have to constantly update their mkWindowsApp packages.
+  # It is NOT meant for long-term persistance; If the Windows or App layers change, the Runtime layer will be discarded.
+  persistRuntimeLayer = false;
+
   nativeBuildInputs = [ unzip copyDesktopItems copyDesktopIcons ];
 
   # This code will become part of the launcher script.
