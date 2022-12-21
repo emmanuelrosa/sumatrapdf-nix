@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1667584294,
-        "narHash": "sha256-k6xCgInl+ebcP+Ehk2AoauxWa1QbqmoDIJAIKdrpL7c=",
+        "lastModified": 1671651858,
+        "narHash": "sha256-8UVlTmDvef6wPxX4mDseAu/qrc6OVtrvX5KOAN+D6/8=",
         "owner": "emmanuelrosa",
         "repo": "erosanix",
-        "rev": "6bc161793e42c38a298902ffe57e19d65e64e1e6",
+        "rev": "f52a09763ba88663ee2dceb3d79f8a1bcbb039e8",
         "type": "github"
       },
       "original": {
@@ -37,11 +37,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1666621279,
-        "narHash": "sha256-sEB5CA8xxI5MEUZYcMW+GMMmLwvlvYFsNWZl2fKLaG4=",
+        "lastModified": 1670273049,
+        "narHash": "sha256-zuDhKsNUHLucIHLagrS2R91TT70D7zSyai+UaEirzvs=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "22aa6dcbac09a87376677552b656bbf9e1db9f8d",
+        "rev": "cc6635027a8fadd3aaaab6b1d14bc2c2df688151",
         "type": "github"
       },
       "original": {
