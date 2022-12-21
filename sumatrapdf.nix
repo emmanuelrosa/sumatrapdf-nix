@@ -56,12 +56,23 @@ in mkWindowsApp rec {
               "$HOME/.cache/${pname}" = "drive_c/${pname}/${pname}cache";
   };
 
+  # By default, `fileMap` is applied right before running the app and is cleaned up after the app terminates. If the following option is set to "true", then `fileMap` is also applied prior to `winAppInstall`. This is set to "false" by default.
+  fileMapDuringAppInstall = false;
+
+  # By default `mkWindowsApp` doesn't persist registry changes made during runtime. Therefore, if an app uses the registry then set this to "true". The registry files are saved to `$HOME/.local/share/mkWindowsApp/$pname/`.
+  persistRegistry = false;
+
   # By default mkWindowsApp creates ephemeral (temporary) WINEPREFIX(es). 
   # Setting persistRuntimeLayer to true causes mkWindowsApp to retain the WINEPREFIX, for the short term. 
   # This option is designed for apps which can't have their automatic updates disabled.
   # It allows package maintainers to not have to constantly update their mkWindowsApp packages.
   # It is NOT meant for long-term persistance; If the Windows or App layers change, the Runtime layer will be discarded.
   persistRuntimeLayer = false;
+
+  # The method used to calculate the input hashes for the layers.
+  # This should be set to "store-path", which is the strictest and most reproduceable method. But it results in many rebuilds of the layers since the slightest change to the package inputs will change the input hashes.
+  # An alternative is "version" which is a relaxed method and results in fewer rebuilds but is less reproduceable. If you are considering using "version", contact me first. There may be a better way.
+  inputHashMethod = "store-path";
 
   nativeBuildInputs = [ unzip copyDesktopItems copyDesktopIcons ];
 
