@@ -20,11 +20,11 @@ in mkWindowsApp rec {
   inherit wine;
 
   pname = "sumatrapdf";
-  version = "3.4.6";
+  version = "3.5.2";
 
   src = builtins.fetchurl {
     url = "https://www.sumatrapdfreader.org/dl/rel/${version}/SumatraPDF-${version}-64.zip";
-    sha256 = "03fl6vacz5vz19ypdv5f3rdvs8msqip6yava3yy4iisbnyl5mc1b";
+    sha256 = "sha256:1299a6n4m13a22sig53dmlz3nf3pr1q9kfyz49lcwk8qr6av7k36";
   };
 
   # In most cases, you'll either be using an .exe or .zip as the src.
@@ -173,8 +173,8 @@ in mkWindowsApp rec {
     name = "sumatrapdf";
 
     src = fetchurl {
-      url = "https://github.com/sumatrapdfreader/sumatrapdf/raw/master/gfx/SumatraPDF-256x256x32.png";
-      sha256 = "1l7d95digqbpgg42lrv9740n4k3wn482m7dcwxm6z6n5kidhfp4b";
+      url = "https://github.com/sumatrapdfreader/sumatrapdf/raw/${version}rel/gfx/SumatraPDF-256x256x32.png";
+      sha256 = "sha256-i1wHW5zFmm9q56ydKhCxfExiATlpZyrIe3fhF1tJ7dA=";
     };
   };
 
