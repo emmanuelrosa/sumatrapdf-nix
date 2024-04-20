@@ -22,7 +22,7 @@ in mkWindowsApp rec {
   pname = "sumatrapdf";
   version = "3.4.6";
 
-  src = fetchurl {
+  src = builtins.fetchurl {
     url = "https://www.sumatrapdfreader.org/dl/rel/${version}/SumatraPDF-${version}-64.zip";
     sha256 = "03fl6vacz5vz19ypdv5f3rdvs8msqip6yava3yy4iisbnyl5mc1b";
   };
