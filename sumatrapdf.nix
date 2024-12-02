@@ -11,11 +11,6 @@
   # The default settings used if user doesn't already have a settings file.
   # Tabs are disabled because they lead to UI issues when using Wine.
   defaultSettings = ./SumatraPDF-settings.txt;
-
-  # This registry file sets winebrowser (xdg-open) as the default handler for
-  # text files, instead of Wine's notepad.
-  # Selecting "Settings -> Advanced Options" should then use xdg-open to open the SumatraPDF config file.
-  txtReg = ./txt.reg;
 in mkWindowsApp rec {
   inherit wine;
 
@@ -98,7 +93,6 @@ in mkWindowsApp rec {
     mkdir -p "$config_dir"
     cp -v -n "${defaultSettings}" "$config_dir/SumatraPDF-settings.txt"
     chmod ug+w "$config_dir/SumatraPDF-settings.txt"
-    regedit ${txtReg}
   '';
 
 
