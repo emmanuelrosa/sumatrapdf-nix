@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1713432030,
-        "narHash": "sha256-RLza6YXRqE4W2CcfBPU8D031yXI8NA2uNu/4mVrxTzo=",
+        "lastModified": 1733093656,
+        "narHash": "sha256-o48lkOgo08KktiAEUJ+lmnt1a+GbCfvOmqV4a0zMCK4=",
         "owner": "emmanuelrosa",
         "repo": "erosanix",
-        "rev": "46fda151e2d1ef002afcbf4e3183314806d35570",
+        "rev": "a6748909eccd026e326e970b8f80d6bf25eb993f",
         "type": "github"
       },
       "original": {
