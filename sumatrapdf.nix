@@ -27,6 +27,11 @@ in mkWindowsApp rec {
     sha256 = "sha256:1299a6n4m13a22sig53dmlz3nf3pr1q9kfyz49lcwk8qr6av7k36";
   };
 
+  # By default, when a Wine prefix is first created Wine will produce a warning prompt if Mono is not installed.
+  # This doesn't happen with the Wine "full" packages, but it does happen with the "base" packages.
+  # When this option is set to 'false', DLL overrides are used when the Wine prefix is created, to bypass the prompt.
+  enableMonoBootPrompt = false;
+
   # In most cases, you'll either be using an .exe or .zip as the src.
   # Even in the case of a .zip, you probably want to unpack with the launcher script.
   dontUnpack = true;   

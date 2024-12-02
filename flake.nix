@@ -17,7 +17,7 @@
       sumatrapdf = callPackage ./sumatrapdf.nix {
         inherit mkWindowsApp makeDesktopIcon copyDesktopIcons;
 
-        wine = wineWowPackages.full;
+        wine = wineWowPackages.base;
       };
     };
 
