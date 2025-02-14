@@ -74,6 +74,45 @@ in mkWindowsApp rec {
   # An alternative is "version" which is a relaxed method and results in fewer rebuilds but is less reproduceable. If you are considering using "version", contact me first. There may be a better way.
   inputHashMethod = "store-path";
 
+  # When enabled, the Direct3D backend is changed from OpenGL to vulkan.
+  # Used mainly for Direct3D games.
+  enableVulkan = false;
+
+  # Can be used to precisely select the Direct3D implementation.
+  #
+  # | enableVulkan | rendererOverride | Direct3D implementation |
+  # |--------------|------------------|-------------------------|
+  # | false        | null             | OpenGL                  |
+  # | true         | null             | Vulkan (DXVK)           |
+  # | *            | dxvk-vulkan      | Vulkan (DXVK)           |
+  # | *            | wine-opengl      | OpenGL                  |
+  # | *            | wine-vulkan      | Vulkan (VKD3D)          |
+  rendererOverride = null;
+
+  # When enabled, the environment variable $MANGOHUD is set to the path to mangohud.
+  # Mainly used for games.
+  enableHUD = false;
+
+  # Wine creates a number of symlinks in the Windows user profile directory.
+  # This attribute set allows specific symlinks to be disabled.
+  # For example, if you find that an application creates a Windows shortcut in your Linux home directory,
+  # the Desktop symlink can be disabled with { desktop = false; }.
+  # When a symlink is disabled, it's replaced with a directory. That way anything written to it remains in a mkWindowsApp layer.
+  # Acceptable attributes, all of which default to the boolean value 'true', are:
+  # desktop, documents, downloads, music, pictures, and videos.
+  enabledWineSymlinks = { };
+
+  # Starting with version 10, Wine uses Wayland if it's available. But, usually Wayland compositors enable xwayland,
+  # which causes Wine to default to X11.
+  # When `graphicsDriver` is set to "auto", Wine is allowed to determine whether to use Wayland or X11.
+  # When set to "wayland", DISPLAY is unset prior to running Wine, causing it to use Wayland.
+  # When set to "prefer-wayland", DISPLAY is unset only if WAYLAND_DISPLAY is set, causing Wine to use Wayland only when Wayland is available.
+  graphicsDriver = "auto";
+
+  # When set to true, and if systemd-inhibit is found in $PATH, the launcher script will obtain an idle inhibit lock when executing the Windows app.
+  # An idle inhibit lock can prevent the screen from turning off. Thus, this is most useful for Windows games.
+  inhibitIdle = false;
+
   nativeBuildInputs = [ unzip copyDesktopItems copyDesktopIcons ];
 
   # This code will become part of the launcher script.
