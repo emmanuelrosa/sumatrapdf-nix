@@ -113,7 +113,7 @@ in mkWindowsApp rec {
   # An idle inhibit lock can prevent the screen from turning off. Thus, this is most useful for Windows games.
   inhibitIdle = false;
 
-  nativeBuildInputs = [ unzip copyDesktopItems copyDesktopIcons ];
+  nativeBuildInputs = [ copyDesktopItems copyDesktopIcons ];
 
   # This code will become part of the launcher script.
   # It will execute if the application needs to be installed,
@@ -127,7 +127,7 @@ in mkWindowsApp rec {
     config_dir="$HOME/.config/sumatrapdf"
 
     mkdir -p "$d"
-    unzip ${src} -d "$d"
+    ${unzip}/bin/unzip ${src} -d "$d"
 
     mkdir -p "$config_dir"
     cp -v -n "${defaultSettings}" "$config_dir/SumatraPDF-settings.txt"
